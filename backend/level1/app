@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+require_relative 'lib/application'
+require_relative 'lib/database'
+require_relative 'lib/seed'
+
+require_relative 'models/car'
+require_relative 'models/car_option'
+require_relative 'models/rental'
+
+require 'draper'
+require_relative 'decorators/rental_decorator'
+
+module GA
+  class Application
+    require_relative 'config/boot'
+    include GA::Database
+    include GA::Seed
+
+    def initialize
+      puts generate_json
+    end
+
+    private
+    def generate_json
+      hsh = { :rentals => [] }
+      Rental.find_each do |rental|
+        @rental = RentalDecorator.new(rental)
+        hsh[:rentals] << {
+          id: @rental.id,
+          price: @rental.price,
+        }
+      end
+      JSON.pretty_generate(hsh)
+    end
+  end
+end
+
+GA::Application.new
