@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+require_relative 'lib/application'
+require_relative 'lib/database'
+require_relative 'lib/seed'
+
+require_relative 'models/car'
+require_relative 'models/car_option'
+require_relative 'models/rental'
+
+require 'draper'
+require_relative 'decorators/rental_decorator'
+
+require 'logger'
+
+module GA
+  class Application
+    require_relative 'config/boot'
+    include GA::Database
+    include GA::Seed
+
+    def initialize
+      @logger = Logger.new $stdout
+      @logger.info JSON.pretty_generate(find_rentals)
+    end
+
+    private
+    def find_rentals
+      collection = Rental.all
+      collection.each_with_object({}) do |item, hsh|
+        hsh[:rentals] ||= []
+        @rental = RentalDecorator.new(item)
+        hsh[:rentals] << {
+          id: @rental.id,
+          price: @rental.price,
+      		commission: {
+      			insurance_fee: @rental.insurance_fee,
+      			assistance_fee: @rental.assistance_fee,
+      			drivy_fee: @rental.drivy_fee,
+      		},
+        }
+      end
+    end
+  end
+end
+
+GA::Application.new
+
+exit 0

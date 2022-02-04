@@ -1,0 +1,45 @@
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '2.7.2'
+
+# ActiveRecord
+gem 'activerecord'
+
+# ActiveSupport
+gem 'activesupport'
+
+# PostgreSQL
+gem 'pg'
+
+# Redis
+gem 'redis'
+
+# Simple, efficient background processing for Ruby.
+gem 'sidekiq'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', require: false
+
+# Environment
+gem 'dotenv-rails'
+
+# rake
+gem 'rake'
+
+# Serializers
+gem 'active_model_serializers'
+
+# Draper
+gem 'draper'
+
+group :development, :test do
+  # Pry
+  gem 'pry'
+  #
+  # # Faker
+  # gem 'faker'
+  #
+  # # RSpec
+  # gem 'rspec-rails', '~> 5.0.0'
+end
