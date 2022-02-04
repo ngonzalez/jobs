@@ -10,6 +10,8 @@ require_relative 'models/rental'
 require 'draper'
 require_relative 'decorators/rental_decorator'
 
+require 'logger'
+
 module GA
   class Application
     require_relative 'config/boot'
@@ -17,22 +19,25 @@ module GA
     include GA::Seed
 
     def initialize
-      puts generate_json
+      @logger = Logger.new $stdout
+      @logger.info JSON.pretty_generate(find_rentals)
     end
 
     private
-    def generate_json
-      hsh = { :rentals => [] }
-      Rental.find_each do |rental|
-        @rental = RentalDecorator.new(rental)
+    def find_rentals
+      collection = Rental.all
+      collection.each_with_object({}) do |item, hsh|
+        hsh[:rentals] ||= []
+        @rental = RentalDecorator.new(item)
         hsh[:rentals] << {
           id: @rental.id,
           price: @rental.price,
         }
       end
-      JSON.pretty_generate(hsh)
     end
   end
 end
 
 GA::Application.new
+
+exit 0
