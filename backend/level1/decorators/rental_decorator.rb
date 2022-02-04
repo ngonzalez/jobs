@@ -14,6 +14,6 @@ class RentalDecorator < Draper::Decorator
   end
 
   def price
-    (car.price_per_day * duration) + (car.price_per_km * distance)
+    (object.car.price_per_day * duration) + (object.car.price_per_km * distance)
   end
 end
