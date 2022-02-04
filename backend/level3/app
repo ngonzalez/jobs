@@ -32,11 +32,11 @@ module GA
         hsh[:rentals] << {
           id: @rental.id,
           price: @rental.price,
-      		commission: {
-      			insurance_fee: @rental.insurance_fee,
-      			assistance_fee: @rental.assistance_fee,
-      			drivy_fee: @rental.drivy_fee,
-      		},
+          commission: {
+            insurance_fee: @rental.insurance_fee,
+            assistance_fee: @rental.assistance_fee,
+            drivy_fee: @rental.drivy_fee,
+          },
         }
       end
     end
