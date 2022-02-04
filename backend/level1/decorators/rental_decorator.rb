@@ -16,11 +16,4 @@ class RentalDecorator < Draper::Decorator
   def price
     (car.price_per_day * duration) + (car.price_per_km * distance)
   end
-
-  def to_builder
-    Jbuilder.new do |object|
-      object.id rental_id
-      object.price price
-    end
-  end
 end
