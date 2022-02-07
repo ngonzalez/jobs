@@ -44,10 +44,6 @@ class RentalDecorator < Draper::Decorator
     object.car_options.pluck(:car_option_type)
   end
 
-  def price
-    price_per_day_for_duration + (object.car.price_per_km * object.distance)
-  end
-
   def total_price
     price + car_options_price
   end
