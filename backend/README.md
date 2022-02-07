@@ -1,3 +1,17 @@
+# backend
+
+## Install dependencies
+
+```ruby
+bundle install
+```
+
+## Run the application
+
+```ruby
+bundle exec ruby app
+```
+
 # Getaround EU Backend Challenge (previously Drivy)
 
 Looking for a job? Check out our [open positions](https://uk.getaround.com.com/jobs).
