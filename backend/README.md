@@ -1,5 +1,9 @@
 # backend
 
+### Configuration
+
+Edit `.env` file to add PostgreSQL configuration
+
 ## Install dependencies
 
 ```ruby
