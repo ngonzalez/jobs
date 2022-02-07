@@ -12,12 +12,6 @@ gem 'activesupport'
 # PostgreSQL
 gem 'pg'
 
-# Redis
-gem 'redis'
-
-# Simple, efficient background processing for Ruby.
-gem 'sidekiq'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
@@ -36,10 +30,10 @@ gem 'draper'
 group :development, :test do
   # Pry
   gem 'pry'
-  #
-  # # Faker
-  # gem 'faker'
-  #
-  # # RSpec
-  # gem 'rspec-rails', '~> 5.0.0'
+
+  # Faker
+  gem 'faker'
+
+  # RSpec
+  gem 'rspec-rails', '~> 5.0.0'
 end
