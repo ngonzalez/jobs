@@ -19,14 +19,6 @@ module GA
             price_per_km:  hsh['price_per_km'],
           )
         end
-        # data_input['options'].each do |hsh|
-        #   next if CarOption.find_by(car_option_id: hsh['id'])
-        #   CarOption.create!(
-        #     car_option_id:   hsh['id'],
-        #     car_option_type: hsh['type'],
-        #     rental_id:       hsh['rental_id'],
-        #   )
-        # end
         data_input['rentals'].each do |hsh|
           next if Rental.find_by(rental_id: hsh['id'])
           Rental.create!(
